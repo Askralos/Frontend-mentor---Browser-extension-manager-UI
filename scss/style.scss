@@ -274,4 +274,13 @@ body {
             }
         }
     }
+    .no-extensions-message {
+        text-align: center;
+        padding: 2rem;
+        color: hsl(0, 1%, 62%);
+        font-size: 1rem;
+        border-radius: 12px;
+        margin: 1rem 0;
+        grid-column: 1 / -1;
+    }
 }

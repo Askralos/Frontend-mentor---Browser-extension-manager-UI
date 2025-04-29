@@ -61,14 +61,12 @@ const State = {
             }
         });
         
-        // Réinitialiser la hauteur après la transition
         setTimeout(() => {
             containerExtension.style.height = 'auto';
-        }, 300); // Durée de la transition
+        }, 300); 
     }
 };
 
-// Event handlers
 const handleToggle = (id) => {
     State.toggleExtension(id);
 };
@@ -81,7 +79,6 @@ const handleFilter = (filter) => {
     State.setFilter(filter);
 };
 
-// Component for a single extension item
 const ExtensionItem = ({ id, logo, name, description, isActive }) => `
     <div class="extension-list-item">
         <div class="extension-item-header">
@@ -105,16 +102,29 @@ const ExtensionItem = ({ id, logo, name, description, isActive }) => `
     </div>
 `;
 
-const ExtensionList = (extensions) => `
-    ${extensions.map((extension) => ExtensionItem(extension)).join("")}
-`;
+const ExtensionList = (extensions) => {
+    if (extensions.length === 0) {
+        let message = '';
+        switch (State.currentFilter) {
+            case 'active':
+                message = 'No active extensions. Activate some extensions to see them here.';
+                break;
+            case 'inactive':
+                message = 'No inactive extensions. All your extensions are active.';
+                break;
+            default:
+                message = 'No extensions found. Add extensions to start.';
+        }
+        return `<div class="no-extensions-message">${message}</div>`;
+    }
+    return extensions.map((extension) => ExtensionItem(extension)).join("");
+};
 
 const App = async () => {
     try {
         const response = await fetch("data.json");
         const extensions = await response.json();
         
-        // Add unique IDs to extensions
         const extensionsWithIds = extensions.map((ext, index) => ({
             ...ext,
             id: `ext-${index}`
@@ -122,7 +132,6 @@ const App = async () => {
         
         State.setExtensions(extensionsWithIds);
         
-        // Add filter button listeners
         document.querySelectorAll('.extension-list-header-buttons button').forEach(button => {
             button.addEventListener('click', () => handleFilter(button.dataset.filter));
         });
