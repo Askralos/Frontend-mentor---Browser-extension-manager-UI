@@ -1,0 +1,277 @@
+@use "./variables" as *;
+@use "./components/toggle-switch" as toggle;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    font-size: $font-size-paragraph;
+    font-weight: map-get($font-weights, regular);
+    transition: background-color 0.3s ease;
+
+    &[data-theme="dark"] {
+        background: $light-gradient;
+        color: $neutral-0;
+    }
+
+    &[data-theme="light"] {
+        background: $dark-gradient;
+        color: $neutral-900;
+    }
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    
+    @media (min-width: $desktop-width) {
+        padding: 2rem;
+    }
+}
+
+.container-extension {
+    max-width: 1000px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.8rem;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    will-change: height;
+    transform: translateZ(0);
+    overflow: hidden;
+    padding: 1rem;
+    
+    @media (min-width: $desktop-width) {
+        padding: 1.5rem 5rem;
+    }
+
+    body[data-theme="light"] & {
+        background: $light-gradient;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(128, 128, 128, 0.1);
+    }
+    body[data-theme="dark"] & {
+        background: $dark-gradient;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+.extension-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.8rem;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+
+    body[data-theme="light"] & {
+        border: 1px solid rgba(128, 128, 128, 0.1);
+    }
+    body[data-theme="dark"] & {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .extension-header-title {
+        width: 45px;
+        height: 25px;
+        display: flex;
+    }
+
+    .extension-header-button {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        padding: 0.4rem 0.5rem;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.2);
+
+            body[data-theme="light"] & {
+                background: rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        img {
+            width: 14px;
+            height: 14px;
+        }
+    }
+}
+
+.extension-list {
+    margin-top: 2rem;
+    will-change: height;
+    transform: translateZ(0);
+
+    &-header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        
+        @media (min-width: $tablet-width) {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &-title {
+            font-weight: map-get($font-weights, bold);
+            font-size: 1.3rem;
+        }
+
+        &-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+
+            @media (min-width: $desktop-width) {
+                margin-top: 0rem;
+
+            }
+
+            button {
+                padding: 0.5rem 0.8rem;
+                border: 1px solid transparent;
+                border-radius: 24px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-size: 0.7rem;
+
+                body[data-theme="dark"] & {
+                    background: rgba(255, 255, 255, 0.1);
+                    color: $neutral-300;
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.2);
+                    }
+
+                    &.active {
+                        background: $red-400;
+                        color: $neutral-800;
+                    }
+                }
+
+                body[data-theme="light"] & {
+                    border: 1px solid rgba(128, 128, 128, 0.1);
+                    color: $neutral-900;
+
+                    &:hover {
+                        background: rgba(128, 128, 128, 0.1);
+                    }
+
+                    &.active {
+                        background: $red-700;
+                        color: $neutral-800;
+                        border: 1px solid transparent;
+                    }
+                }
+            }
+        }
+    }
+
+    &-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        will-change: height;
+        transform: translateZ(0);
+        
+        @media (min-width: $tablet-width) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (min-width: $desktop-width) {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &-item {
+        background: $neutral-800;
+        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        transition: background-color 0.3s ease;
+        border: 1px solid rgba(224, 224, 224, 0.1);
+
+        body[data-theme="light"] & {
+            background: $neutral-0;
+            border: 1px solid rgba(41, 41, 41, 0.1);
+            box-shadow: 0 2px 6px rgba(102, 101, 101, 0.1);
+        }
+
+        .extension-item-header {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .extension-item-logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .extension-item-info {
+            h3 {
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                font-size: 0.7rem;
+                color: $neutral-400;
+            }
+        }
+
+        .extension-item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+
+            button {
+                padding: 0.4rem 0.7rem;
+                border: none;
+                border-radius: 24px;
+                cursor: pointer;
+                background-color: transparent;
+                transition: background-color 0.3s ease;
+                font-size: 0.7rem;
+
+                body[data-theme="dark"] & {
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    color: $neutral-300;
+
+                    &:hover {
+                        background: $red-400;
+                    }
+                }
+
+                body[data-theme="light"] & {
+                    border: 1px solid rgba(41, 41, 41, 0.1);
+                    box-shadow: 0 2px 6px rgba(102, 101, 101, 0.1);
+                    color: $neutral-900;
+
+                    &:hover {
+                        background: $red-700;
+                        color: $neutral-0;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,80 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Browser extensions manager UI</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
-
-  Extensions List
-
-  All
-  Active
-  Inactive
-
-  <!-- If you plan to use the JSON file to populate the data dynamically, you can delete the content below -->
-
-  DevLens
-  Quickly inspect page layouts and visualize element boundaries.
-  Remove
-
-  StyleSpy
-  Instantly analyze and copy CSS from any webpage element.
-  Remove
-
-  SpeedBoost
-  Optimizes browser resource usage to accelerate page loading.
-  Remove
-
-  JSONWizard
-  Formats, validates, and prettifies JSON responses in-browser.
-  Remove
-
-  TabMaster Pro
-  Organizes browser tabs into groups and sessions.
-  Remove
-
-  ViewportBuddy
-  Simulates various screen resolutions directly within the browser.
-  Remove
-
-  Markup Notes
-  Enables annotation and notes directly onto webpages for collaborative debugging.
-  Remove
-
-  GridGuides
-  Overlay customizable grids and alignment guides on any webpage.
-  Remove
-
-  Palette Picker
-  Instantly extracts color palettes from any webpage.
-  Remove
-
-  LinkChecker
-  Scans and highlights broken links on any page.
-  Remove
-
-  DOM Snapshot
-  Capture and export DOM structures quickly.
-  Remove
-
-  ConsolePlus
-  Enhanced developer console with advanced filtering and logging.
-  Remove
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css" />
+        <title>Browser extensions manager UI</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="container-extension">
+                <div class="extension-header">
+                    <div class="extension-header-title">
+						<img src="/images/logo-dark-mode.svg" alt="logo-moon" />
+                    </div>
+                    <button class="extension-header-button">
+                        <img src="/images/icon-sun.svg" alt="icon-sun" />
+                    </button>
+                </div>
+                <div class="extension-list">
+                    <div class="extension-list-header">
+                        <div class="extension-list-header-title">
+                            Extensions List
+                        </div>
+                        <div class="extension-list-header-buttons">
+                            <button class="extension-list-header-button-all" data-filter="all">
+                                All
+                            </button>
+                            <button class="extension-list-header-button-active" data-filter="active">
+                                Active
+                            </button>
+                            <button class="extension-list-header-button-inactive" data-filter="inactive">
+                                Inactive
+                            </button>
+                        </div>
+                    </div>
+                    <div class="extension-list-items">
+                        <!-- <div class="extension-list-item">
+							<div class="extension-item-header">
+								<div class="extension-item-logo">
+									<img src="${logo}" alt="${name} logo">
+								</div>
+								<div class="extension-item-info">
+									<h3 class="extension-item-name">${name}</h3>
+									<p class="extension-item-description">${description}</p>
+								</div>
+							</div>
+							<div class="extension-item-footer">
+								<button class="extension-item-remove">Remove</button>
+								<label class="toggle-switch">
+									<input type="checkbox" ${isActive ? "checked" : ""}>
+									<div class="toggle-switch-background">
+										<div class="toggle-switch-handle"></div>
+									</div>
+								</label>
+							</div>
+						</div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/script.js"></script>
+        <script src="js/theme.js"></script>
+    </body>
 </html>

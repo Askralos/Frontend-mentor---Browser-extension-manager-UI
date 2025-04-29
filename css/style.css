@@ -1,0 +1,319 @@
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 14px;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+.toggle-switch input[type=checkbox] {
+  display: none;
+}
+.toggle-switch input[type=checkbox]:checked + .toggle-switch-handle {
+  transform: translateX(11px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 3px hsl(3, 86%, 64%);
+}
+body[data-theme=light] .toggle-switch input[type=checkbox]:checked + .toggle-switch-handle {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 3px hsl(3, 77%, 44%);
+}
+.toggle-switch input[type=checkbox]:checked + .toggle-switch-background {
+  background-color: hsl(3, 86%, 64%);
+  box-shadow: inset 0 0 0 2px hsl(3, 71%, 56%);
+}
+body[data-theme=light] .toggle-switch input[type=checkbox]:checked + .toggle-switch-background {
+  background-color: hsl(3, 77%, 44%);
+  box-shadow: inset 0 0 0 2px hsl(3, 71%, 56%);
+}
+.toggle-switch input[type=checkbox]:checked + .toggle-switch-background .toggle-switch-handle {
+  transform: translateX(12px);
+}
++ .toggle-switch input[type=checkbox]:checked::before {
+  content: "On";
+  color: hsl(3, 86%, 64%);
+  right: -15px;
+}
+body[data-theme=light] + .toggle-switch input[type=checkbox]:checked::before {
+  color: hsl(3, 77%, 44%);
+}
+.toggle-switch .toggle-switch-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ddd;
+  border-radius: 7px;
+  box-shadow: inset 0 0 0 2px #ccc;
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+.toggle-switch .toggle-switch-handle {
+  position: absolute;
+  top: 1px;
+  left: 0px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  transition: background-color 0.3s ease;
+}
+body[data-theme=dark] {
+  background: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
+  color: hsl(200, 60%, 99%);
+}
+body[data-theme=light] {
+  background: linear-gradient(180deg, #040918 0%, #091540 100%);
+  color: hsl(227, 75%, 14%);
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+@media (min-width: 1440px) {
+  .container {
+    padding: 2rem;
+  }
+}
+
+.container-extension {
+  max-width: 1000px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.8rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  will-change: height;
+  transform: translateZ(0);
+  overflow: hidden;
+  padding: 1rem;
+}
+@media (min-width: 1440px) {
+  .container-extension {
+    padding: 1.5rem 5rem;
+  }
+}
+body[data-theme=light] .container-extension {
+  background: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(128, 128, 128, 0.1);
+}
+body[data-theme=dark] .container-extension {
+  background: linear-gradient(180deg, #040918 0%, #091540 100%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.extension-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.8rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+body[data-theme=light] .extension-header {
+  border: 1px solid rgba(128, 128, 128, 0.1);
+}
+body[data-theme=dark] .extension-header {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.extension-header .extension-header-title {
+  width: 45px;
+  height: 25px;
+  display: flex;
+}
+.extension-header .extension-header-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0.4rem 0.5rem;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+.extension-header .extension-header-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+body[data-theme=light] .extension-header .extension-header-button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.extension-header .extension-header-button img {
+  width: 14px;
+  height: 14px;
+}
+
+.extension-list {
+  margin-top: 2rem;
+  will-change: height;
+  transform: translateZ(0);
+}
+.extension-list-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .extension-list-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.extension-list-header-title {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+.extension-list-header-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+@media (min-width: 1440px) {
+  .extension-list-header-buttons {
+    margin-top: 0rem;
+  }
+}
+.extension-list-header-buttons button {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.7rem;
+}
+body[data-theme=dark] .extension-list-header-buttons button {
+  background: rgba(255, 255, 255, 0.1);
+  color: hsl(0, 0%, 78%);
+}
+body[data-theme=dark] .extension-list-header-buttons button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+body[data-theme=dark] .extension-list-header-buttons button.active {
+  background: hsl(3, 86%, 64%);
+  color: hsl(226, 25%, 17%);
+}
+body[data-theme=light] .extension-list-header-buttons button {
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  color: hsl(227, 75%, 14%);
+}
+body[data-theme=light] .extension-list-header-buttons button:hover {
+  background: rgba(128, 128, 128, 0.1);
+}
+body[data-theme=light] .extension-list-header-buttons button.active {
+  background: hsl(3, 77%, 44%);
+  color: hsl(226, 25%, 17%);
+  border: 1px solid transparent;
+}
+.extension-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  will-change: height;
+  transform: translateZ(0);
+}
+@media (min-width: 768px) {
+  .extension-list-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1440px) {
+  .extension-list-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.extension-list-item {
+  background: hsl(226, 25%, 17%);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  transition: background-color 0.3s ease;
+  border: 1px solid rgba(224, 224, 224, 0.1);
+}
+body[data-theme=light] .extension-list-item {
+  background: hsl(200, 60%, 99%);
+  border: 1px solid rgba(41, 41, 41, 0.1);
+  box-shadow: 0 2px 6px rgba(102, 101, 101, 0.1);
+}
+.extension-list-item .extension-item-header {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.extension-list-item .extension-item-logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+.extension-list-item .extension-item-info h3 {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+.extension-list-item .extension-item-info p {
+  font-size: 0.7rem;
+  color: hsl(0, 1%, 62%);
+}
+.extension-list-item .extension-item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+.extension-list-item .extension-item-footer button {
+  padding: 0.4rem 0.7rem;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  font-size: 0.7rem;
+}
+body[data-theme=dark] .extension-list-item .extension-item-footer button {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: hsl(0, 0%, 78%);
+}
+body[data-theme=dark] .extension-list-item .extension-item-footer button:hover {
+  background: hsl(3, 86%, 64%);
+}
+body[data-theme=light] .extension-list-item .extension-item-footer button {
+  border: 1px solid rgba(41, 41, 41, 0.1);
+  box-shadow: 0 2px 6px rgba(102, 101, 101, 0.1);
+  color: hsl(227, 75%, 14%);
+}
+body[data-theme=light] .extension-list-item .extension-item-footer button:hover {
+  background: hsl(3, 77%, 44%);
+  color: hsl(200, 60%, 99%);
+}
+
+/*# sourceMappingURL=style.css.map */

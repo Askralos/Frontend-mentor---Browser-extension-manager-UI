@@ -1,0 +1,100 @@
+@use "../variables" as *;
+// Variables
+$toggle-width: 25px;
+$toggle-height: 14px;
+$toggle-bg: #ddd;
+$toggle-border: #ccc;
+$toggle-shadow: rgba(0, 0, 0, 0.2);
+$toggle-handle-size: 12px;
+$toggle-offset-y: 1px;
+$toggle-offset-x: 0px;
+$toggle-label-color: #aaa;
+$toggle-transition: 0.3s ease-in-out;
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: $toggle-width;
+    height: $toggle-height;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+
+    input[type="checkbox"] {
+        display: none;
+
+        &:checked {
+            + .toggle-switch-handle {
+                transform: translateX(
+                    $toggle-width - $toggle-handle-size - 2 * $toggle-offset-y
+                );
+                box-shadow: 0 2px 5px $toggle-shadow, 0 0 0 3px $red-400;
+
+                body[data-theme="light"] & {
+                    box-shadow: 0 2px 5px $toggle-shadow, 0 0 0 3px $red-700;
+                }
+            }
+
+            + .toggle-switch-background {
+                background-color: $red-400;
+                box-shadow: inset 0 0 0 2px $red-500;
+
+                body[data-theme="light"] & {
+                    background-color: $red-700;
+                    box-shadow: inset 0 0 0 2px $red-500;
+                }
+
+                .toggle-switch-handle {
+                    transform: translateX(
+                        $toggle-width - $toggle-handle-size - $toggle-offset-y
+                    );
+                }
+            }
+
+            + &::before {
+                content: "On";
+                color: $red-400;
+
+                body[data-theme="light"] & {
+                    color: $red-700;
+                }
+                right: -15px;
+            }
+        }
+    }
+
+    .toggle-switch-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $toggle-bg;
+        border-radius: $toggle-height / 2;
+        box-shadow: inset 0 0 0 2px $toggle-border;
+        transition: all $toggle-transition;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        line-height: 0;
+    }
+
+    .toggle-switch-handle {
+        position: absolute;
+        top: $toggle-offset-y;
+        left: $toggle-offset-x;
+        width: $toggle-handle-size;
+        height: $toggle-handle-size;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 5px $toggle-shadow;
+        transition: all $toggle-transition;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        line-height: 0;
+    }
+
+}
