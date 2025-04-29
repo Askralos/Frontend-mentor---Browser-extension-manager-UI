@@ -2,9 +2,11 @@
 
 ![Design preview for the Browser extensions manager UI coding challenge](./preview.jpg)
 
+
 ## The challenge
 
 Your challenge is to build out this browser extension manager UI and get it looking as close to the design as possible.
+https://www.frontendmentor.io/challenges/browser-extension-manager-ui-yNZnOfsMAp
 
 Your users should be able to: 
 
